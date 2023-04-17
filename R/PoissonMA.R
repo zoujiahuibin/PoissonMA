@@ -16,27 +16,36 @@
 #' KL loss of MA, AIC, BIC, SAIC, SBIC, Full.
 #' @export
 #'
+#' @import magrittr
+#' @import Rsolnp
+#' @import mvtnorm
+#' @importFrom stats AIC BIC cor glm poisson
+#' @importFrom utils combn
+#'
 #' @examples
 #' library(mvtnorm)
+#' library(magrittr)
+#' library(Rsolnp)
 #' beta0=rep(0.5,5)
 #' X=rmvnorm(100,mean=rep(0,5))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)
-#' PoissonMA(y,X, modeltype='nested',intercept=F)
+#' PoissonMA(y,X, modeltype='nested',intercept=FALSE)
 #'
 #'
 #  beta0=rep(0.5,5)
 #' X=cbind(1,rmvnorm(100,mean=rep(0,4)))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)
-#' PoissonMA(y,X, modeltype='nested',intercept=T)
+#' PoissonMA(y,X, modeltype='nested',intercept=TRUE)
 #'
 #'
 #'
-PoissonMA<-function(y,X,Index=NULL, modeltype,intercept=intercept){
+
+PoissonMA<-function(y,X,Index=NULL, modeltype,intercept){
   #setup candidate models
   if(is.null(Index)){
-    Index=Modelsetup(y,X,modeltype=modeltype,intercept)
+    Index=ModelSetup(y,X,modeltype=modeltype,intercept)
   }
   S=nrow(Index)
   p2=ncol(Index)

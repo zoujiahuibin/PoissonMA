@@ -2,3 +2,12 @@
 
 export(ModelSetup)
 export(PoissonMA)
+import(Rsolnp)
+import(magrittr)
+import(mvtnorm)
+importFrom(stats,AIC)
+importFrom(stats,BIC)
+importFrom(stats,cor)
+importFrom(stats,glm)
+importFrom(stats,poisson)
+importFrom(utils,combn)

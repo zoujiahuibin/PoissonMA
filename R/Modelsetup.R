@@ -14,25 +14,33 @@
 #' the indexes of variables used in the sth candidate model.
 #' @export
 #'
+#' @import magrittr
+#' @import Rsolnp
+#' @import mvtnorm
+#' @importFrom stats cor
+#' @importFrom utils combn
+#'
+#'
 #' @examples
 #' library(mvtnorm)
+#' library(magrittr)
 #' beta0=rep(0.5,5)
 #' X=rmvnorm(100,mean=rep(0,5))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)
-#' ModelSetup(y,X,'nested',intercept=F)
+#' ModelSetup(y,X,'nested',intercept=FALSE)
 #'
 #'
 #' beta0=rep(0.5,5)
 #' X=cbind(1,rmvnorm(100,mean=rep(0,4)))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)
-#' ModelSetup(y,X,'nested',intercept=T)
+#' ModelSetup(y,X,'nested',intercept=TRUE)
 #'
 #'
 #'
-library(magrittr)
-ModelSetup<-function(y,X,modeltype='nested',intercept=F){
+
+ModelSetup<-function(y,X,modeltype='nested',intercept=FALSE){
   if(modeltype=='all'){
     if(intercept){
       m=ncol(X)-1
@@ -57,17 +65,17 @@ ModelSetup<-function(y,X,modeltype='nested',intercept=F){
   }else if(modeltype=='nested'){
     if(intercept){
       X2=cbind(y,X[,2:ncol(X)])
-      orders=X2%>%cor%>%.[1,2:ncol(X2)]%>%abs%>%order(decreasing = T)%>%add(1)
+      orders=X2%>%cor%>%'['(1,2:ncol(X2))%>%abs%>%order(decreasing = T)%>%add(1)
       p=ncol(X)
       m=p-1
       Index=matrix(0,ncol=m,nrow=m)
       for (i in 1:m) {
         Index[i,1:i]=orders[1:i]
       }
-      Index%<>%cbind(matrix(rep(1,each=m),nrow=m),.)
+      Index=cbind(matrix(rep(1,each=m),nrow=m),Index)
     }else{
       X2=cbind(y,X)
-      orders=X2%>%cor%>%.[1,2:ncol(X2)]%>%abs%>%order(decreasing = T)
+      orders=X2%>%cor%>%'['(1,2:ncol(X2))%>%abs%>%order(decreasing = T)
       m=ncol(X)
       Index=matrix(0,ncol=m,nrow=m)
       for (i in 1:m) {

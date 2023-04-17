@@ -4,7 +4,7 @@
 \alias{PoissonMA}
 \title{PoissonMA: Model averaging method for Poisson regressions}
 \usage{
-PoissonMA(y, X, Index = NULL, modeltype, intercept = intercept)
+PoissonMA(y, X, Index = NULL, modeltype, intercept)
 }
 \arguments{
 \item{y}{a vector consist of natural numbers.}
@@ -29,17 +29,19 @@ PoissonMA() is a function to realize model averaging method for Poisson regressi
 }
 \examples{
 library(mvtnorm)
+library(magrittr)
+library(Rsolnp)
 beta0=rep(0.5,5)
 X=rmvnorm(100,mean=rep(0,5))
 lambda=exp(X\%*\%beta0)
 y=rpois(100,lambda)
-PoissonMA(y,X, modeltype='nested',intercept=F)
+PoissonMA(y,X, modeltype='nested',intercept=FALSE)
 
 
 X=cbind(1,rmvnorm(100,mean=rep(0,4)))
 lambda=exp(X\%*\%beta0)
 y=rpois(100,lambda)
-PoissonMA(y,X, modeltype='nested',intercept=T)
+PoissonMA(y,X, modeltype='nested',intercept=TRUE)
 
 
 

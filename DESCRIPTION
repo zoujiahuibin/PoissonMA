@@ -1,12 +1,15 @@
-Package: PoissonMA
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Package: PoiMA
+Title: Implement model averaging for Poisson regressions
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Jiahui", "Zou", , "zoujiahui@amss.ac.cn", role = c("aut", "cre","cph"),
+           comment = c(ORCID = "0000-0002-3145-6807"))
+Description: Model averaging is a popular methodology to promote prediction and deal with the uncertainty of covariate choice when we use a statistical model. This package is designed to implement model averaging for Poisson regressions, in which the criterion to calculate model-averaging weight is unbiased.
+License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports:
+    magrittr (>= 2.0.0),
+    Rsolnp (>= 1.0),
+    mvtnorm
