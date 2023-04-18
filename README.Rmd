@@ -72,7 +72,7 @@ devtools::install_github("zoujiahuibin/PoissonMA")
 
 There are basic examples which show you how to solve a common problem:
 
-
+### Example 1
 ```{r example1}
 options(warn =-1)
 library(PoiMA)
