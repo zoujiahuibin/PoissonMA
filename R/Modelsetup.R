@@ -24,14 +24,14 @@
 #' @examples
 #' library(mvtnorm)
 #' library(magrittr)
-#' beta0=rep(0.5,5)
+#' beta0=rep(0.1,5)
 #' X=rmvnorm(100,mean=rep(0,5))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)
 #' ModelSetup(y,X,'nested',intercept=FALSE)
 #'
 #'
-#' beta0=rep(0.5,5)
+#' beta0=rep(0.1,5)
 #' X=cbind(1,rmvnorm(100,mean=rep(0,4)))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)

@@ -26,7 +26,7 @@
 #' library(mvtnorm)
 #' library(magrittr)
 #' library(Rsolnp)
-#' beta0=rep(0.5,5)
+#' beta0=rep(0.1,5)
 #' X=rmvnorm(100,mean=rep(0,5))
 #' lambda=exp(X%*%beta0)
 #' y=rpois(100,lambda)

@@ -13,3 +13,7 @@ Imports:
     magrittr (>= 2.0.0),
     Rsolnp (>= 1.0),
     mvtnorm
+Suggests: 
+    knitr,
+    rmarkdown
+
